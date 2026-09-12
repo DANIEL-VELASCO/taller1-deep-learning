@@ -1,0 +1,26 @@
+{
+  "zona": "NW",
+  "estacion": 62548002,
+  "anios": [
+    2016,
+    2017,
+    2018
+  ],
+  "lat": 50.96,
+  "lon": 1.96,
+  "height_sta": 3.0,
+  "frecuencia": "1h",
+  "n_filas": 26304,
+  "pct_nan_t_c": 0.0009124087591240876,
+  "columnas": [
+    "t_c",
+    "td_c",
+    "hu",
+    "psl_hpa",
+    "ff",
+    "u",
+    "v",
+    "precip",
+    "n_obs"
+  ]
+}
