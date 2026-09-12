@@ -1,0 +1,28 @@
+# Datos crudos de MeteoNet (cientos de MB) - NO se suben; se descargan en Colab con el notebook 00
+code/punto1_rnn_meteonet/raw/
+*.tar.gz
+*.tar
+NW20*.csv
+SE20*.csv
+
+# Modelos entrenados y checkpoints
+*.h5
+*.keras
+*.ckpt
+checkpoints/
+saved_models/
+
+# Credenciales
+kaggle.json
+
+# Python / Jupyter
+__pycache__/
+.ipynb_checkpoints/
+*.pyc
+.venv/
+venv/
+
+# Sistema
+.DS_Store
+Thumbs.db
+desktop.ini

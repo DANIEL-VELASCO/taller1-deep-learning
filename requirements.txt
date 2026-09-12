@@ -1,0 +1,9 @@
+# Versiones de referencia (Google Colab, septiembre 2026). Anotar la versión real usada en el README.
+tensorflow>=2.16
+numpy
+pandas
+scikit-learn
+matplotlib
+seaborn
+requests
+tqdm
