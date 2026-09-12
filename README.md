@@ -5,7 +5,7 @@ Pontificia Universidad Javeriana – Maestría en Inteligencia Artificial – Ap
 ## Integrantes
 
 - Daniel Sebastian Velasco Munar – Punto 1 (RNN sobre MeteoNet)
-- [NOMBRE COMPAÑERA] – Punto 2 (CNN sobre Fashion-MNIST)
+- Andrea Barraza – Punto 2 (CNN sobre Fashion-MNIST)
 
 ## Estructura de la entrega
 
