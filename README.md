@@ -15,11 +15,10 @@ code/
     00_descarga_y_filtrado_estacion.ipynb  Descarga los datos crudos de MeteoNet (zona NW, 2016-2018),
                                            resume la calidad de todas las estaciones, filtra la estación
                                            escogida y genera el CSV horario que usan los demás notebooks.
-    01_eda_y_seleccion_estacion.ipynb      Exploración de la serie (ciclos, huecos, autocorrelación), definición
-                                           de la tarea (entrada 72 h -> salida 24 h), imputación, partición
-                                           cronológica train/val/test y estadísticas de escalado.
-    02_modelado_rnn.ipynb                  Preparación de secuencias, experimentos con RNN/LSTM/GRU,
-                                           búsqueda de hiperparámetros y evaluación en test (último 30%).
+    01_eda_y_modelo_rnn.ipynb              Todo el desarrollo: exploración de la serie, definición de la tarea
+                                           (entrada 72 h -> salida 24 h), imputación y partición cronológica,
+                                           líneas base, búsqueda de hiperparámetros (SimpleRNN/LSTM/GRU) y
+                                           evaluación en test con análisis de errores. Requiere GPU.
     data/estacion_62548002_horaria.csv     Serie horaria de la estación escogida (sale del notebook 00).
     data/estacion_62548002_metadatos.json  Ubicación, cobertura y columnas de la estación.
     data/estacion_62548002_preparada.csv   Serie imputada + variables de calendario (sale del notebook 01).
@@ -30,7 +29,8 @@ code/
     03_mobilenetv2_transfer.ipynb          Transfer learning con MobileNetV2.
     04_bono_cnn_moderna.ipynb              Bono: extensión a una CNN moderna (EfficientNetV2 / ConvNeXt).
 results/
-  punto1/                                  Resumen de estaciones, figuras del EDA (eda_*.png) y métricas del Punto 1.
+  punto1/                                  Resumen de estaciones, figuras (eda_*.png, rnn_*.png), tabla de
+                                           experimentos, métricas de test y modelo final del Punto 1.
   punto2/                                  Tablas de métricas (CSV) y figuras del Punto 2.
 report/
   informe.pdf                              Reporte escrito en formato IEEE Transactions on AI.

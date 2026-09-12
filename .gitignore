@@ -8,6 +8,7 @@ SE20*.csv
 # Modelos entrenados y checkpoints
 *.h5
 *.keras
+!results/**/*.keras
 *.ckpt
 checkpoints/
 saved_models/
