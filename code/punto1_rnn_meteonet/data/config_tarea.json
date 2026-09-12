@@ -1,0 +1,77 @@
+{
+  "estacion": 62548002,
+  "objetivo": "t_c",
+  "features": [
+    "t_c",
+    "td_c",
+    "hu",
+    "psl_hpa",
+    "ff",
+    "u",
+    "v",
+    "precip",
+    "hora_sin",
+    "hora_cos",
+    "dia_sin",
+    "dia_cos"
+  ],
+  "largo_entrada_h": 72,
+  "horizonte_h": 24,
+  "horizonte_referencia_h": 1,
+  "frecuencia": "1h",
+  "i_val": 15650,
+  "i_test": 18412,
+  "fechas": {
+    "entrenamiento": [
+      "2016-01-01 00:00:00",
+      "2017-10-14 01:00:00"
+    ],
+    "validacion": [
+      "2017-10-14 02:00:00",
+      "2018-02-06 03:00:00"
+    ],
+    "test": [
+      "2018-02-06 04:00:00",
+      "2018-12-31 23:00:00"
+    ]
+  },
+  "limite_interpolacion_h": 6,
+  "escalado": {
+    "media": {
+      "t_c": 11.766019,
+      "td_c": 8.344002,
+      "hu": 80.779105,
+      "psl_hpa": 1016.829737,
+      "ff": 4.808034,
+      "u": 1.623833,
+      "v": 0.664671,
+      "precip": 0.08492,
+      "hora_sin": 1.7e-05,
+      "hora_cos": 0.000126,
+      "dia_sin": 0.069204,
+      "dia_cos": -0.087236
+    },
+    "std": {
+      "t_c": 5.925619,
+      "td_c": 5.241403,
+      "hu": 12.45459,
+      "psl_hpa": 9.670637,
+      "ff": 2.857108,
+      "u": 3.899404,
+      "v": 3.555432,
+      "precip": 0.53286,
+      "hora_sin": 0.707087,
+      "hora_cos": 0.707172,
+      "dia_sin": 0.710735,
+      "dia_cos": 0.694636
+    }
+  },
+  "mae_persistencia_serie_completa": {
+    "1": 0.5639,
+    "3": 1.4253,
+    "6": 2.4234,
+    "12": 3.363,
+    "24": 2.0776,
+    "48": 2.6458
+  }
+}

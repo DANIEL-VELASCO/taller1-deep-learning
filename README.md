@@ -15,17 +15,22 @@ code/
     00_descarga_y_filtrado_estacion.ipynb  Descarga los datos crudos de MeteoNet (zona NW, 2016-2018),
                                            resume la calidad de todas las estaciones, filtra la estación
                                            escogida y genera el CSV horario que usan los demás notebooks.
-    01_eda_y_seleccion_estacion.ipynb      Análisis exploratorio de la estación y justificación de la selección.
+    01_eda_y_seleccion_estacion.ipynb      Exploración de la serie (ciclos, huecos, autocorrelación), definición
+                                           de la tarea (entrada 72 h -> salida 24 h), imputación, partición
+                                           cronológica train/val/test y estadísticas de escalado.
     02_modelado_rnn.ipynb                  Preparación de secuencias, experimentos con RNN/LSTM/GRU,
                                            búsqueda de hiperparámetros y evaluación en test (último 30%).
-    data/estacion_XXXXX_horaria.csv        Serie horaria de la estación escogida (archivo pequeño, versionado).
+    data/estacion_62548002_horaria.csv     Serie horaria de la estación escogida (sale del notebook 00).
+    data/estacion_62548002_metadatos.json  Ubicación, cobertura y columnas de la estación.
+    data/estacion_62548002_preparada.csv   Serie imputada + variables de calendario (sale del notebook 01).
+    data/config_tarea.json                 Definición de la tarea: ventana, horizonte, variables, cortes, escalado.
   punto2_cnn_fashion_mnist/
     01_cnn_desde_cero.ipynb                CNN diseñada desde cero.
     02_cnn_filtros_red_grande.ipynb        CNN con filtros iniciales de una red grande preentrenada (p. ej. VGG16).
     03_mobilenetv2_transfer.ipynb          Transfer learning con MobileNetV2.
     04_bono_cnn_moderna.ipynb              Bono: extensión a una CNN moderna (EfficientNetV2 / ConvNeXt).
 results/
-  punto1/                                  Tablas de métricas (CSV) y figuras del Punto 1.
+  punto1/                                  Resumen de estaciones, figuras del EDA (eda_*.png) y métricas del Punto 1.
   punto2/                                  Tablas de métricas (CSV) y figuras del Punto 2.
 report/
   informe.pdf                              Reporte escrito en formato IEEE Transactions on AI.
