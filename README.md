@@ -24,14 +24,16 @@ code/
     data/estacion_62548002_preparada.csv   Serie imputada + variables de calendario (sale del notebook 01).
     data/config_tarea.json                 Definición de la tarea: ventana, horizonte, variables, cortes, escalado.
   punto2_cnn_fashion_mnist/
-    01_cnn_desde_cero.ipynb                CNN diseñada desde cero.
-    02_cnn_filtros_red_grande.ipynb        CNN con filtros iniciales de una red grande preentrenada (p. ej. VGG16).
-    03_mobilenetv2_transfer.ipynb          Transfer learning con MobileNetV2.
-    04_bono_cnn_moderna.ipynb              Bono: extensión a una CNN moderna (EfficientNetV2 / ConvNeXt).
+    01_cnn_fashion_mnist.ipynb             Todo el desarrollo: preparación de datos, CNN desde cero, VGG16 con
+                                           filtros de ImageNet y MobileNetV2, las tres con la misma partición,
+                                           semilla, lotes, callbacks y métricas. Búsqueda de hiperparámetros,
+                                           fine-tuning, evaluación en test y análisis de errores. Requiere GPU.
+    04_bono_cnn_moderna.ipynb              Bono: extensión a una CNN moderna (EfficientNetV2 / ConvNeXt). Pendiente.
 results/
   punto1/                                  Resumen de estaciones, figuras (eda_*.png, rnn_*.png), tabla de
                                            experimentos, métricas de test y modelo final del Punto 1.
-  punto2/                                  Tablas de métricas (CSV) y figuras del Punto 2.
+  punto2/                                  Tabla de experimentos, métricas de test, tiempos, bootstrap,
+                                           curvas crudas (JSON), figuras y el modelo de la CNN desde cero.
 report/
   informe.pdf                              Reporte escrito en formato IEEE Transactions on AI.
 requirements.txt                           Librerías utilizadas.
