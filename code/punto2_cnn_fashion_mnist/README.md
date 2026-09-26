@@ -55,6 +55,12 @@ la misma corrida, sin depender de que tres archivos distintos hayan quedado sinc
 4. *Entorno de ejecución > Ejecutar todo*. VGG16 se lleva la mayor parte del tiempo en cualquiera de
    los tres presupuestos.
 
+Los tiempos de la tabla son el peor caso, con todas las épocas corridas; en la práctica
+`EarlyStopping(patience=3)` corta antes. El notebook activa **precisión mixta** cuando detecta GPU
+(`USAR_MIXED_PRECISION`): las convoluciones corren en float16 y los pesos, la pérdida y la capa de
+salida se quedan en float32. En una T4 eso casi duplica la velocidad de VGG16 sin cambiar el diseño
+experimental. La política usada queda registrada en `entorno.json`.
+
 El notebook clona el repositorio y va escribiendo en `results/punto2/` a medida que avanza, así que
 una desconexión a mitad de camino no obliga a empezar de cero.
 
