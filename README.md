@@ -24,14 +24,19 @@ code/
     data/estacion_62548002_preparada.csv   Serie imputada + variables de calendario (sale del notebook 01).
     data/config_tarea.json                 Definición de la tarea: ventana, horizonte, variables, cortes, escalado.
   punto2_cnn_fashion_mnist/
-    01_cnn_desde_cero.ipynb                CNN diseñada desde cero.
-    02_cnn_filtros_red_grande.ipynb        CNN con filtros iniciales de una red grande preentrenada (p. ej. VGG16).
-    03_mobilenetv2_transfer.ipynb          Transfer learning con MobileNetV2.
-    04_bono_cnn_moderna.ipynb              Bono: extensión a una CNN moderna (EfficientNetV2 / ConvNeXt).
+    01_cnn_fashion_mnist.ipynb             Todo el desarrollo: preparación de datos, CNN desde cero, VGG16 con
+                                           filtros de ImageNet y MobileNetV2, las tres con la misma partición,
+                                           semilla, lotes, callbacks y métricas. Búsqueda de hiperparámetros,
+                                           fine-tuning, evaluación en test y análisis de errores. Requiere GPU.
+    02_figuras_informe.ipynb               Figuras y tablas del informe a partir de results/punto2. No entrena
+                                           nada: corre en CPU en segundos y se puede repetir para ajustar
+                                           una gráfica sin volver a pasar por la GPU.
+    04_bono_cnn_moderna.ipynb              Bono: extensión a una CNN moderna (EfficientNetV2 / ConvNeXt). Pendiente.
 results/
   punto1/                                  Resumen de estaciones, figuras (eda_*.png, rnn_*.png), tabla de
                                            experimentos, métricas de test y modelo final del Punto 1.
-  punto2/                                  Tablas de métricas (CSV) y figuras del Punto 2.
+  punto2/                                  Tabla de experimentos, métricas de test, tiempos, bootstrap,
+                                           curvas crudas (JSON), figuras y el modelo de la CNN desde cero.
 report/
   informe.pdf                              Reporte escrito en formato IEEE Transactions on AI.
 requirements.txt                           Librerías utilizadas.
@@ -50,6 +55,6 @@ Fashion-MNIST se descarga automáticamente con `tf.keras.datasets.fashion_mnist`
 
 ## Versiones utilizadas
 
-- Python: (anotar)
-- TensorFlow: (anotar)
+- TensorFlow: 2.20.0
 - Entorno: Google Colab, GPU T4
+- Punto 2: semilla 42, lotes de 128, entrada de las redes preentrenadas a 96x96, precisión float32

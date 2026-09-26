@@ -1,0 +1,36 @@
+{
+  "tensorflow": "2.20.0",
+  "gpu": "/physical_device:GPU:0",
+  "presupuesto": "completo",
+  "precision": "float32",
+  "seed": 42,
+  "img_size": 96,
+  "batch_size": 128,
+  "imagenes_busqueda": 54000,
+  "epochs_search": 12,
+  "epochs_final": 30,
+  "epochs_fine_tuning": 15,
+  "mejores_config": {
+    "cnn": {
+      "filters": [
+        32,
+        64
+      ],
+      "drop": 0.0,
+      "aug": false,
+      "lr": 0.001
+    },
+    "vgg16": {
+      "drop": 0.2,
+      "aug": false,
+      "lr": 0.001
+    },
+    "mobilenetv2": {
+      "drop": 0.2,
+      "aug": false,
+      "lr": 0.001
+    }
+  },
+  "duplicados_desarrollo": 0,
+  "imagenes_test_repetidas_en_desarrollo": 0
+}

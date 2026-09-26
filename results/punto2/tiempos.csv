@@ -1,0 +1,6 @@
+family,stage,seconds
+cnn,base,78.70661859100028
+vgg16,base,2087.723170422
+mobilenetv2,base,213.15444428400042
+vgg16,fine_tune_4,599.2828021770001
+mobilenetv2,fine_tune_20,126.79143033400032

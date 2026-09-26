@@ -1,0 +1,20 @@
+\begin{table}
+\caption{Búsqueda de hiperparámetros: una fila por corrida, ordenadas por pérdida de validación}
+\label{tab:busqueda}
+\begin{tabular}{llrrrrr}
+\toprule
+Modelo & Configuración & Mejor época & Accuracy val. & Pérdida val. & Brecha & Tiempo (s) \\
+\midrule
+CNN desde cero & 32-64 · drop 0 · sin aug · lr 0.001 & 11 & 0.8765 & 0.3508 & 0.0137 & 39.8654 \\
+CNN desde cero & 64-128 · drop 0.3 · aug · lr 0.001 & 10 & 0.8253 & 0.4916 & -0.0151 & 90.6151 \\
+CNN desde cero & 32-64 · drop 0.3 · aug · lr 0.001 & 12 & 0.8212 & 0.4944 & -0.0120 & 71.5938 \\
+CNN desde cero & 32-64 · drop 0.3 · aug · lr 0.0001 & 12 & 0.7253 & 0.7506 & -0.0161 & 60.1457 \\
+MobileNetV2 & drop 0.2 · sin aug · lr 0.001 & 10 & 0.9013 & 0.2669 & -0.0027 & 149.6435 \\
+MobileNetV2 & drop 0.3 · aug · lr 0.001 & 10 & 0.8617 & 0.3733 & -0.0130 & 238.3438 \\
+MobileNetV2 & drop 0.3 · aug · lr 0.0001 & 12 & 0.8418 & 0.4184 & -0.0105 & 236.1598 \\
+VGG16 & drop 0.2 · sin aug · lr 0.001 & 10 & 0.8830 & 0.3238 & -0.0121 & 888.9561 \\
+VGG16 & drop 0.4 · aug · lr 0.001 & 12 & 0.8437 & 0.4368 & -0.0306 & 621.2494 \\
+VGG16 & drop 0.4 · aug · lr 0.0001 & 12 & 0.8298 & 0.5187 & -0.0509 & 617.1292 \\
+\bottomrule
+\end{tabular}
+\end{table}

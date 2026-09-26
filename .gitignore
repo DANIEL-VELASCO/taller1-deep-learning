@@ -11,6 +11,7 @@ SE20*.csv
 !results/**/*.keras
 *.ckpt
 checkpoints/
+checkpoints_tmp/
 saved_models/
 
 # Credenciales
