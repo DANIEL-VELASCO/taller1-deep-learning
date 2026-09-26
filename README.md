@@ -55,6 +55,6 @@ Fashion-MNIST se descarga automáticamente con `tf.keras.datasets.fashion_mnist`
 
 ## Versiones utilizadas
 
-- Python: (anotar)
-- TensorFlow: (anotar)
+- TensorFlow: 2.20.0
 - Entorno: Google Colab, GPU T4
+- Punto 2: semilla 42, lotes de 128, entrada de las redes preentrenadas a 96x96, precisión float32
