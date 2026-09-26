@@ -40,10 +40,20 @@ la misma corrida, sin depender de que tres archivos distintos hayan quedado sinc
 1. Abrir `01_cnn_fashion_mnist.ipynb` en Colab desde GitHub.
 2. *Entorno de ejecución > Cambiar tipo de entorno > **GPU (T4)***. Sin GPU el notebook avisa y no
    vale la pena seguir.
-3. Verificar que `MODO_RAPIDO = False` en la primera celda de código. En `True` la búsqueda usa solo
-   12 000 imágenes y 4 épocas: sirve para depurar en minutos, pero esos números **no** van al informe.
-4. *Entorno de ejecución > Ejecutar todo*. Con `MODO_RAPIDO = False` toma entre 1,5 y 2,5 horas en
-   una T4; VGG16 se lleva la mayor parte.
+3. Elegir el presupuesto de cómputo en la constante `PRESUPUESTO` de la primera celda de código:
+
+   | Valor | Búsqueda | Entrenamiento final | Duración en T4 |
+   |---|---|---|---|
+   | `"completo"` | las 54 000 imágenes, 12 épocas | 30 épocas + 15 de fine-tuning | ~2 h |
+   | `"acotado"` | 15 000 estratificadas, 8 épocas | 20 épocas + 8 de fine-tuning | ~1 h |
+   | `"depuracion"` | 12 000, 4 épocas | 8 épocas + 3 | ~10 min |
+
+   Buscar hiperparámetros sobre una submuestra estratificada y entrenar el modelo final con las
+   54 000 es práctica normal; lo que importa es declararlo, y el notebook lo deja escrito en
+   `entorno.json`. `"depuracion"` solo sirve para comprobar que el notebook corre de punta a punta:
+   esos números **no** van al informe.
+4. *Entorno de ejecución > Ejecutar todo*. VGG16 se lleva la mayor parte del tiempo en cualquiera de
+   los tres presupuestos.
 
 El notebook clona el repositorio y va escribiendo en `results/punto2/` a medida que avanza, así que
 una desconexión a mitad de camino no obliga a empezar de cero.
@@ -58,7 +68,7 @@ una desconexión a mitad de camino no obliga a empezar de cero.
 | `tiempos.csv` | Segundos por familia y por etapa (`base` / `fine_tune_*`) |
 | `bootstrap.csv` | Accuracy con intervalo de confianza del 95 % |
 | `resumen_final.csv` | Tabla consolidada para el informe |
-| `entorno.json` | Versión de TensorFlow, GPU, semilla, hiperparámetros elegidos y conteo de duplicados |
+| `entorno.json` | Presupuesto usado, versión de TensorFlow, GPU, semilla, hiperparámetros elegidos y conteo de duplicados |
 | `historias_busqueda.json`, `historias_final.json` | Curvas de entrenamiento crudas, por si hay que rehacer alguna figura sin reentrenar |
 | `*.png` | Ejemplos por clase, resultados de la búsqueda, curvas, matrices de confusión y errores |
 | `modelo_cnn_desde_cero.keras` | Único modelo que se versiona (~150 KB) |
