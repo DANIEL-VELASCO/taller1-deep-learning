@@ -2,7 +2,11 @@
 
 Desarrollo a cargo de **Andrea Barraza**.
 
-Las tres aproximaciones están en **un solo notebook**, `01_cnn_fashion_mnist.ipynb`. La razón es la
+Dos notebooks: `01_cnn_fashion_mnist.ipynb` entrena y evalúa, y `02_figuras_informe.ipynb` arma las
+figuras y las tablas a partir de lo que el primero dejó en `results/punto2/`. Separarlos deja ajustar
+una gráfica sin volver a pasar por la GPU.
+
+Las tres aproximaciones están en **un solo notebook de entrenamiento**. La razón es la
 rúbrica: el 15 % del punto se juega en la *comparación justa bajo condiciones documentadas*, y con un
 único notebook las tres familias comparten partición, semilla, lotes, callbacks y métricas dentro de
 la misma corrida, sin depender de que tres archivos distintos hayan quedado sincronizados.
@@ -54,6 +58,8 @@ la misma corrida, sin depender de que tres archivos distintos hayan quedado sinc
    esos números **no** van al informe.
 4. *Entorno de ejecución > Ejecutar todo*. VGG16 se lleva la mayor parte del tiempo en cualquiera de
    los tres presupuestos.
+5. Al terminar, correr `02_figuras_informe.ipynb`. No necesita GPU y tarda segundos; se puede repetir
+   las veces que haga falta para ajustar una figura.
 
 Los tiempos de la tabla son el peor caso, con todas las épocas corridas; en la práctica
 `EarlyStopping(patience=3)` corta antes. El notebook activa **precisión mixta** cuando detecta GPU
@@ -76,8 +82,24 @@ una desconexión a mitad de camino no obliga a empezar de cero.
 | `resumen_final.csv` | Tabla consolidada para el informe |
 | `entorno.json` | Presupuesto usado, versión de TensorFlow, GPU, semilla, hiperparámetros elegidos y conteo de duplicados |
 | `historias_busqueda.json`, `historias_final.json` | Curvas de entrenamiento crudas, por si hay que rehacer alguna figura sin reentrenar |
-| `*.png` | Ejemplos por clase, resultados de la búsqueda, curvas, matrices de confusión y errores |
+| `predicciones_test.npz` | Etiquetas reales y probabilidades de los tres modelos sobre test (~400 KB) |
 | `modelo_cnn_desde_cero.keras` | Único modelo que se versiona (~150 KB) |
+
+Y del notebook `02`, ya listo para el informe:
+
+| Archivo | Contenido |
+|---|---|
+| `fig_clases.png` | Una muestra por clase |
+| `fig_busqueda.png` | Cada configuración probada y su relación entre rendimiento y sobreajuste |
+| `fig_curvas.png` | Accuracy y pérdida de las tres familias, entrenamiento contra validación |
+| `fig_confusion.png` | Matrices de confusión normalizadas por fila |
+| `fig_f1_clase.png` | F1 por clase, de la más difícil a la más fácil |
+| `fig_comparacion.png` | Accuracy contra parámetros y contra tiempo, con intervalo de confianza |
+| `fig_errores.png` | Los quince errores más confiados del mejor modelo |
+| `tabla_comparativa.*`, `tabla_busqueda.*`, `tabla_f1_por_clase.*` | Las tres tablas en `.csv`, `.tex` y `.md` |
+
+Las figuras usan un color y un marcador fijos por modelo, elegidos para que sigan distinguiéndose en
+impresión en gris y con daltonismo, y guardadas a 300 ppp.
 
 Los modelos de VGG16 (~56 MB) y MobileNetV2 (~9 MB) y todos los checkpoints se quedan en `/content`,
 fuera del repositorio: GitHub avisa a partir de 50 MB por archivo y no aportan nada al informe que no

@@ -28,6 +28,9 @@ code/
                                            filtros de ImageNet y MobileNetV2, las tres con la misma partición,
                                            semilla, lotes, callbacks y métricas. Búsqueda de hiperparámetros,
                                            fine-tuning, evaluación en test y análisis de errores. Requiere GPU.
+    02_figuras_informe.ipynb               Figuras y tablas del informe a partir de results/punto2. No entrena
+                                           nada: corre en CPU en segundos y se puede repetir para ajustar
+                                           una gráfica sin volver a pasar por la GPU.
     04_bono_cnn_moderna.ipynb              Bono: extensión a una CNN moderna (EfficientNetV2 / ConvNeXt). Pendiente.
 results/
   punto1/                                  Resumen de estaciones, figuras (eda_*.png, rnn_*.png), tabla de
