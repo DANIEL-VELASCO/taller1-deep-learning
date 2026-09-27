@@ -68,7 +68,7 @@ results/
   punto2/bono/                             Resultados del bono: búsqueda, curvas, métricas, predicciones de
                                            test, figuras (fig_bono_*.png) y tablas (tabla_bono_*).
 report/
-  Informe_Taller1_IEEE.docx                Informe escrito en formato IEEE Transactions on AI (Puntos 1 y 2).
+  Informe_Taller1_IEEE.docx                Informe escrito en formato IEEE Transactions on AI (Puntos 1 y 2, con el bono).
 requirements.txt                           Librerías utilizadas.
 ```
 
