@@ -28,3 +28,6 @@ venv/
 .DS_Store
 Thumbs.db
 desktop.ini
+
+# Zip de la entrega (se arma con git archive)
+Taller1_*.zip

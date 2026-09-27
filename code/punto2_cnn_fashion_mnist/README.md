@@ -1,7 +1,5 @@
 # Punto 2 – CNN sobre Fashion-MNIST
 
-Desarrollo a cargo de **Andrea Barraza**.
-
 Tres notebooks: `01_cnn_fashion_mnist.ipynb` entrena y evalúa, `02_figuras_informe.ipynb` arma las
 figuras y las tablas a partir de lo que el primero dejó en `results/punto2/`, y
 `03_bono_redes_modernas.ipynb` es el bono con EfficientNetV2-B0. Separar entrenamiento y figuras deja

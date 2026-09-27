@@ -1,18 +1,18 @@
 # Taller 1 – Redes Neuronales Recurrentes y Convolucionales
 
 Pontificia Universidad Javeriana – Maestría en Inteligencia Artificial – Aprendizaje Profundo (202630)
-Profesor: Andrés Moreno Barbosa
+Profesor: Andrés Moreno
 
 ## Integrantes
 
-- Daniel Sebastian Velasco Munar – Punto 1 (RNN sobre MeteoNet)
-- Andrea Barraza – Punto 2 (CNN sobre Fashion-MNIST)
+- Daniel Sebastian Velasco Munar
+- Andrea Barraza
 
 ## Resultados principales
 
 **Punto 1.** Pronóstico de las próximas 24 h de temperatura en la estación 62548002 de MeteoNet (Calais, costa
 norte de Francia) a partir de las 168 h anteriores de 12 variables. El modelo final es una SimpleRNN de 32
-unidades (2 232 parámetros), elegida tras una búsqueda por etapas de 18 corridas. En test (febrero–diciembre
+unidades (2,232 parámetros), elegida tras una búsqueda por etapas de 18 corridas. En test (febrero–diciembre
 de 2018, el 30 % final de la serie) obtiene un MAE de **1.602 °C**, un 24.7 % menos que la mejor línea base
 («ayer», 2.128 °C).
 
@@ -21,12 +21,15 @@ semilla, lotes y callbacks:
 
 | Modelo | Accuracy en test | IC 95 % | Parámetros | Tiempo en T4 |
 |---|---|---|---|---|
-| VGG16 (filtros de ImageNet + fine-tuning) | 0.9319 | 0.9269 – 0.9367 | 14.7 M | 2 687 s |
+| VGG16 (filtros de ImageNet + fine-tuning) | 0.9319 | 0.9269 – 0.9367 | 14.7 M | 2,687 s |
+| EfficientNetV2-B0 (bono) | 0.9273 | 0.9218 – 0.9324 | 5.9 M | 603 s |
 | MobileNetV2 (transfer learning + fine-tuning) | 0.9243 | 0.9190 – 0.9295 | 2.3 M | 340 s |
 | CNN desde cero | 0.8904 | 0.8846 – 0.8963 | 28.7 k | 79 s |
 
-Los intervalos de VGG16 y MobileNetV2 se solapan y MobileNetV2 entrena ocho veces más rápido, así que es la
-opción más equilibrada. El análisis completo está en el informe.
+En la comparación pareada sobre las mismas imágenes de test (bootstrap pareado y McNemar), VGG16 supera a
+MobileNetV2 por 0.76 puntos (p = 0.0015), una diferencia real pero pequeña frente a un costo ocho veces mayor,
+y EfficientNetV2-B0 no se distingue de VGG16 (p = 0.058) con 4.5 veces menos tiempo. El análisis completo
+está en el informe.
 
 ## Estructura de la entrega
 
@@ -69,7 +72,9 @@ results/
                                            test, figuras (fig_bono_*.png) y tablas (tabla_bono_*).
 report/
   Informe_Taller1_IEEE.docx                Informe escrito en formato IEEE Transactions on AI (Puntos 1 y 2, con el bono).
+  Informe_Taller1_IEEE.pdf                 El mismo informe en PDF.
 requirements.txt                           Librerías utilizadas.
+README.txt                                 Integrantes y descripción de cada archivo de la entrega.
 ```
 
 ## Cómo ejecutar
