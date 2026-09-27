@@ -1,0 +1,24 @@
+{
+  "tensorflow": "2.20.0",
+  "gpu": "Tesla T4",
+  "presupuesto": "completo",
+  "precision": "float32",
+  "seed": 42,
+  "img_size": 96,
+  "batch_size": 128,
+  "imagenes_busqueda": 54000,
+  "epochs_search": 12,
+  "epochs_final": 30,
+  "epochs_fine_tuning": 15,
+  "capas_fine_tuning": {
+    "efficientnetv2b0": 20,
+    "convnext_tiny": 20
+  },
+  "mejores_config": {
+    "efficientnetv2b0": {
+      "drop": 0.2,
+      "aug": false,
+      "lr": 0.001
+    }
+  }
+}

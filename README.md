@@ -54,6 +54,9 @@ code/
                                            fine-tuning, evaluación en test y análisis de errores. Requiere GPU.
     02_figuras_informe.ipynb               Figuras y tablas del informe a partir de results/punto2. No entrena
                                            nada: corre en CPU en segundos.
+    03_bono_redes_modernas.ipynb           Bono: EfficientNetV2-B0 en las mismas condiciones que las otras tres
+                                           redes, comparación pareada (bootstrap y McNemar) contra la mejor, y
+                                           sus figuras y tablas. Requiere GPU para entrenar.
     README.md                              Detalle del diseño del Punto 2 y de los archivos que genera.
 results/
   punto1/                                  Resumen de estaciones, figuras exploratorias (eda_*.png) y de
@@ -62,6 +65,8 @@ results/
   punto2/                                  Tabla de experimentos, métricas de test, tiempos, bootstrap,
                                            predicciones de test, curvas crudas (JSON), figuras del informe
                                            (fig_*.png), tablas (csv/tex/md) y el modelo de la CNN desde cero.
+  punto2/bono/                             Resultados del bono: búsqueda, curvas, métricas, predicciones de
+                                           test, figuras (fig_bono_*.png) y tablas (tabla_bono_*).
 report/
   Informe_Taller1_IEEE.docx                Informe escrito en formato IEEE Transactions on AI (Puntos 1 y 2).
 requirements.txt                           Librerías utilizadas.
@@ -77,7 +82,7 @@ Los notebooks de entrenamiento se corren en Google Colab con GPU:
    ejecutado: `Archivo > Guardar una copia en GitHub`; los archivos de `results/` se descargan desde Colab y
    se suben al repositorio.
 
-Orden: en el Punto 1, `00` → `01` → `02`; en el Punto 2, `01` → `02`. Los notebooks `02` de cada punto no
+Orden: en el Punto 1, `00` → `01` → `02`; en el Punto 2, `01` → `02` → `03`. Los notebooks `02` de cada punto no
 necesitan GPU y también corren en local: solo leen lo que dejaron los anteriores, así que una figura se puede
 rehacer sin volver a entrenar.
 

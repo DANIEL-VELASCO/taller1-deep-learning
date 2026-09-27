@@ -1,0 +1,2 @@
+Modelo,Accuracy,LogLoss,Precision_macro,Recall_macro,F1_macro,Parametros,Entrenables
+efficientnetv2b0,0.9273,0.21575425475377938,0.92781858433748,0.9273000000000001,0.9274699491417598,5932122,823098

@@ -2,9 +2,10 @@
 
 Desarrollo a cargo de **Andrea Barraza**.
 
-Dos notebooks: `01_cnn_fashion_mnist.ipynb` entrena y evalúa, y `02_figuras_informe.ipynb` arma las
-figuras y las tablas a partir de lo que el primero dejó en `results/punto2/`. Separarlos deja ajustar
-una gráfica sin volver a pasar por la GPU.
+Tres notebooks: `01_cnn_fashion_mnist.ipynb` entrena y evalúa, `02_figuras_informe.ipynb` arma las
+figuras y las tablas a partir de lo que el primero dejó en `results/punto2/`, y
+`03_bono_redes_modernas.ipynb` es el bono con EfficientNetV2-B0. Separar entrenamiento y figuras deja
+ajustar una gráfica sin volver a pasar por la GPU.
 
 Las tres aproximaciones están en **un solo notebook de entrenamiento**. La razón es la
 rúbrica: el 15 % del punto se juega en la *comparación justa bajo condiciones documentadas*, y con un
@@ -18,7 +19,7 @@ la misma corrida, sin depender de que tres archivos distintos hayan quedado sinc
 | 2-4. VGG16 | `include_top=False`, `weights='imagenet'`, congelada y luego fine-tuning de las últimas 4 capas | 10 % |
 | 2-4. MobileNetV2 | Transfer learning, congelada y luego fine-tuning de las últimas 20 capas | 10 % |
 | 5-7. Evaluación y análisis | Test (una sola vez), matrices de confusión, errores, bootstrap y comparación | 15 % |
-| Pendiente | Bono: EfficientNetV2 / ConvNeXt / ResNeXt | Bono 10 % |
+| Notebook `03` | Bono: EfficientNetV2-B0 en las mismas condiciones, comparación pareada contra la mejor red | Bono 10 % |
 
 ## Cómo está resuelta la comparación justa
 
@@ -62,10 +63,11 @@ la misma corrida, sin depender de que tres archivos distintos hayan quedado sinc
    las veces que haga falta para ajustar una figura.
 
 Los tiempos de la tabla son el peor caso, con todas las épocas corridas; en la práctica
-`EarlyStopping(patience=3)` corta antes. El notebook activa **precisión mixta** cuando detecta GPU
-(`USAR_MIXED_PRECISION`): las convoluciones corren en float16 y los pesos, la pérdida y la capa de
-salida se quedan en float32. En una T4 eso casi duplica la velocidad de VGG16 sin cambiar el diseño
-experimental. La política usada queda registrada en `entorno.json`.
+`EarlyStopping(patience=3)` corta antes. El notebook intenta activar **precisión mixta** cuando detecta
+GPU (`USAR_MIXED_PRECISION`), pero Keras 3 vuelve a la política por defecto en cada
+`tf.keras.backend.clear_session()`, y el notebook la llama antes de construir cada modelo. Por eso la
+corrida quedó en **float32**, como registra `entorno.json`, y los tiempos reportados son en float32.
+El bono se corrió también en float32 para que los tiempos sean comparables.
 
 El notebook clona el repositorio y va escribiendo en `results/punto2/` a medida que avanza, así que
 una desconexión a mitad de camino no obliga a empezar de cero.
@@ -104,3 +106,29 @@ impresión en gris y con daltonismo, y guardadas a 300 ppp.
 Los modelos de VGG16 (~56 MB) y MobileNetV2 (~9 MB) y todos los checkpoints se quedan en `/content`,
 fuera del repositorio: GitHub avisa a partir de 50 MB por archivo y no aportan nada al informe que no
 esté ya en los CSV.
+
+## Bono: `03_bono_redes_modernas.ipynb`
+
+Extiende el análisis a **EfficientNetV2-B0**, la continuación de la línea de MobileNetV2. Repite las
+condiciones del notebook `01`: misma partición, semilla, lotes, callbacks, rejilla de búsqueda, fine-tuning
+de las últimas 20 capas con learning rate diez veces menor, float32 y una T4. Entrena y además arma sus
+figuras; con `ENTRENAR = False` solo rehace las figuras a partir de lo guardado. El código deja lista
+ConvNeXt-Tiny: basta agregar `"convnext_tiny"` a `MODELOS_BONO`, a cambio de unas tres o cuatro veces más
+tiempo.
+
+Resultado en test: **0.9273** de accuracy (IC 95 % 0.9218–0.9324) en 603 s, frente a 0.9319 de VGG16
+en 2 687 s y 0.9243 de MobileNetV2 en 340 s. En la comparación pareada no se distingue de VGG16
+(p = 0.058) ni de MobileNetV2 (p = 0.23); VGG16 sí supera a MobileNetV2 (p = 0.0015).
+
+Todo queda en `results/punto2/bono/`:
+
+| Archivo | Contenido |
+|---|---|
+| `experimentos_bono.csv`, `historias_busqueda_bono.json` | Búsqueda de hiperparámetros |
+| `historias_final_bono.json` | Curvas del entrenamiento final, con la época donde empieza el fine-tuning |
+| `metricas_test_bono.csv`, `reporte_efficientnetv2b0.csv`, `tiempos_bono.csv` | Métricas de test, reporte por clase y tiempos por etapa |
+| `predicciones_efficientnetv2b0.npz` | Probabilidades sobre test, para rehacer figuras sin reentrenar |
+| `entorno_bono.json` | GPU, presupuesto, precisión y configuración elegida |
+| `fig_bono_comparacion.png` | Las cuatro redes: accuracy contra parámetros y contra tiempo, y diferencia pareada contra la mejor |
+| `fig_bono_busqueda.png`, `fig_bono_curvas.png`, `fig_bono_confusion.png`, `fig_bono_f1_clase.png` | Búsqueda, curvas, matriz de confusión y F1 por clase |
+| `tabla_bono_comparativa.*`, `tabla_bono_pareada.*`, `tabla_bono_busqueda.*`, `tabla_bono_f1_por_clase.*` | Tablas en `.csv`, `.tex` y `.md` |
